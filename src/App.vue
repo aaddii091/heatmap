@@ -20,6 +20,7 @@ export default {
   },
   setup() {
     const activity = ref([]);
+    const benchedActivityThreshold = ref(100); // change for yellow activity threshold
 
     onBeforeMount(async () => {
       try {
@@ -75,8 +76,8 @@ export default {
       const count = finalDates.value.length > 0 ? finalDates.value[2].count : 0;
 
       // Update the third color if the count is less than 100
-      if (count < 100) {
-        rangeColor[2] = "#FFFF00"; // Replace 'YOUR_CUSTOM_COLOR' with the color you want
+      if (count < benchedActivityThreshold.value) {
+        rangeColor[2] = "#FFFF00"; // Replace with the color you want
       }
 
       return rangeColor;
@@ -88,10 +89,4 @@ export default {
 </script>
 
 <style>
-/* .vch__months__labels__wrapper {
-  padding-bottom: 10px;
-}
-.vch__days__labels__wrapper {
-  padding-right: 101px !important;
-} */
 </style>
